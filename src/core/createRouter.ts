@@ -11,7 +11,7 @@ function routeRender(routes: Routes) {
     history.replaceState("", "", "/#/")
   }
 
-  const routeView = document.querySelector("router-view")
+  const mainEl = document.querySelector("main")
   const [hash, queryString = ""] = location.hash.split("?")
 
   interface Query {
@@ -26,14 +26,14 @@ function routeRender(routes: Routes) {
   history.replaceState(query, "")
 
   const currentRoute = routes.find(route => new RegExp(`${route.path}/?$`).test(hash))
-  if(routeView) {
-    routeView.innerHTML = ""
-    currentRoute && routeView.append(new currentRoute.component().el)
+  if(mainEl) {
+    mainEl.innerHTML = ""
+    currentRoute && mainEl.append(new currentRoute.component().el)
   }
   
   window.scrollTo(0, 0)
 }
-export function createRouter(routes: Routes) {
+export default function createRouter(routes: Routes) {
   return function () {
     window.addEventListener("popstate", () => {
       routeRender(routes)

@@ -4,7 +4,7 @@ interface StoreObservers {
 interface SubscribeCallback {
   (arg: unknown): void
 }
-export class Store<S> {
+export default class Store<S> {
   public state = {} as S
   private observers = {} as StoreObservers
 

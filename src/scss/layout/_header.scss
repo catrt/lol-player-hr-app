@@ -1,0 +1,39 @@
+@use "../abstracts" as *;
+
+header {
+  z-index: 100;
+  gap: 60px;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  box-shadow: 
+    rgba(20, 20, 20, 0.06) 0px 0px 0px 1px, 
+    rgba(20, 20, 20, 0.08) 0px 2px 4px 0px;
+
+  a {
+    img {
+      height: 40px;
+    }
+  }
+
+  nav {
+    ul {
+      display: flex;
+      gap: 2rem;
+
+      li {
+        a {
+          color: $color-gray;
+          font-size: 1.2rem;
+
+          &.active {
+            color: $color-black;
+            font-weight: 900;
+          }
+        }
+      }
+    }
+  }
+}
