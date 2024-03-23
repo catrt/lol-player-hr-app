@@ -1,4 +1,5 @@
-import Component from "../core/Component";
+import Component from "../core/Component"
+import PlayerList from "../components/PlayerList"
 
 export default class Management extends Component {
   constructor() {
@@ -7,6 +8,10 @@ export default class Management extends Component {
     })
   }
   update() {
-    
+    const playerListEl = new PlayerList().el
+
+    this.el.append(
+      playerListEl
+    )
   }
 }

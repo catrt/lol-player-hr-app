@@ -14,8 +14,11 @@
   cursor: pointer;
 
   &:hover {
-    color: $color-white;
     background-color: $color-gray;
+
+    a {
+      color: $color-white
+    }
   }
 
   &--large {

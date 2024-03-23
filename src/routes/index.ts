@@ -1,7 +1,7 @@
 import createRouter from "../core/createRouter";
 import Home from "./Home"
-import Management from "./Home"
-import Profile from "./Home"
+import Management from "./Management"
+import Profile from "./Profile"
 
 export default createRouter([
   { path: "#/", component: Home },

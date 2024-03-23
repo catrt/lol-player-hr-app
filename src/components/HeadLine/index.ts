@@ -33,14 +33,14 @@ export default class Headline extends Component {
   update() {
     const h1El = document.createElement("h1")
     h1El.innerHTML = /* html */`
-      LOL TEAM Management<br>
+      LOL Team Management<br>
       Register & Manage<br>
       Your Players
     `
 
     const btnsEl = document.createElement("div")
     btnsEl.classList.add("btns")
-    this.state.links.map(link => {
+    this.state.links.forEach(link => {
       const btnEl = document.createElement("button")
       btnEl.classList.add("btn", "btn--large")
       btnEl.setAttribute("type", "button")

@@ -1,17 +1,31 @@
 import Component from "../../core/Component";
 
+interface playerProps {
+  [key: string]: unknown
+  infos: info[]
+}
+export interface info {
+  [key: string]: string
+  "image": string
+  "name": string
+  "team": string
+  "level": string
+  "position": string
+}
+
 export default class PlayerItem extends Component {
-  constructor() {
+  declare props: playerProps
+
+  constructor(props: playerProps) {
     super({
       tagName: "a",
-      classNames: ["player"]
+      classNames: ["player"],
+      props
     })
   }
   update() {
+    const { infos } = this.props
+
     
   }
 }
-
-// https://jdfuwchjnxnijctymwhm.supabase.co
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpkZnV3Y2hqbnhuaWpjdHltd2htIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTEwMTQ0ODgsImV4cCI6MjAyNjU5MDQ4OH0.CB77LQV9D9DAIm0jSVRa9ogGaQNwGrTiBlEPvCDQuTM
