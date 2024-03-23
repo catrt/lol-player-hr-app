@@ -1,12 +1,36 @@
 import Component from "../../core/Component"
 
+interface headlineState {
+  [key: string]: unknown
+  links: link[]
+}
+interface link {
+  [key: string]: string
+  "text": string
+  "href": string
+}
+
 export default class Headline extends Component {
+  declare state: headlineState
+
   constructor() {
     super({
-      classNames: ["headline"]
+      classNames: ["headline"],
+      state: {
+        links: [
+          {
+            text: "선수 관리하기",
+            href: "#/management"
+          },
+          {
+            text: "선수 확인하기",
+            href: "#/profile"
+          },
+        ]
+      }
     })
   }
-  render() {
+  update() {
     const h1El = document.createElement("h1")
     h1El.innerHTML = /* html */`
       LOL TEAM Management<br>
@@ -14,22 +38,20 @@ export default class Headline extends Component {
       Your Players
     `
 
-    const managementBtnEl = document.createElement("button")
-    managementBtnEl.classList.add("btn")
-    managementBtnEl.setAttribute("type", "button")
-    managementBtnEl.textContent = "선수 관리하기"
-
-    const profileBtnEl = document.createElement("button")
-    profileBtnEl.classList.add("btn")
-    profileBtnEl.setAttribute("type", "button")
-    profileBtnEl.textContent = "선수 확인하기"
-
     const btnsEl = document.createElement("div")
     btnsEl.classList.add("btns")
-    btnsEl.append(
-      managementBtnEl,
-      profileBtnEl
-    )
+    this.state.links.map(link => {
+      const btnEl = document.createElement("button")
+      btnEl.classList.add("btn", "btn--large")
+      btnEl.setAttribute("type", "button")
+
+      const linkEl = document.createElement("a")
+      linkEl.setAttribute("href", link.href)
+      linkEl.textContent = link.text
+
+      btnEl.append(linkEl)
+      btnsEl.append(btnEl)
+    })
 
     this.el.append(
       h1El,

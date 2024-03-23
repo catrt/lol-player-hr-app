@@ -1,0 +1,17 @@
+@use "../abstracts" as *;
+
+.headline {
+  padding: 0 40px;
+
+  h1 {
+    font-size: 70px;
+    margin-bottom: 60px;
+    line-height: 1.2;
+  }
+
+  .btns {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
+}
