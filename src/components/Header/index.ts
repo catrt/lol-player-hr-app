@@ -12,9 +12,15 @@ export default class Header extends Component {
     const logoEl = new Logo().el
     const navEl = new Navigation().el
 
-    this.el.append(
+    const headerContainerEl = document.createElement("div")
+    headerContainerEl.classList.add("container")
+    headerContainerEl.append(
       logoEl,
       navEl
+    )
+
+    this.el.append(
+      headerContainerEl
     )
   }
 }

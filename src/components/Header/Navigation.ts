@@ -24,11 +24,11 @@ export default class Navigation extends Component {
           },
           {
             name: "Management",
-            href: "#/Management"
+            href: "#/management"
           },
           {
             name: "Profile",
-            href: "#/Profile"
+            href: "#/profile"
           },
         ]
       }
