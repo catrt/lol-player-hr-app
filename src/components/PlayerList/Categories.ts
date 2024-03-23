@@ -15,6 +15,7 @@ export default class Categories extends Component {
       state: {
         categories: [
           "프로필 사진",
+          "닉네임",
           "이름",
           "팀",
           "소속",

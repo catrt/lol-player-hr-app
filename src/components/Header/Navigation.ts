@@ -30,6 +30,10 @@ export default class Navigation extends Component {
             name: "Profile",
             href: "#/profile?key=FAKER"
           },
+          {
+            name: "Edit",
+            href: "#/edit"
+          },
         ]
       }
     })

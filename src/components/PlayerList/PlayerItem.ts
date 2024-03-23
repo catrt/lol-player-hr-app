@@ -1,10 +1,7 @@
 import Component from "../../core/Component";
+import { getPlayerImageUrl } from "../../core/supabase";
 
-interface playerProps {
-  [key: string]: unknown
-  infos: info[]
-}
-export interface info {
+export interface playerProps {
   [key: string]: unknown
   "nickname": string
   "image": string
@@ -31,8 +28,25 @@ export default class PlayerItem extends Component {
     })
   }
   update() {
-    const { infos } = this.props
+    const { nickname,
+      image,
+      name,
+      team,
+      level,
+      position
+    } = this.props
 
-    
+    this.el.setAttribute("href", `#/profile?key=${nickname}`)
+
+    this.el.innerHTML = /* html */`
+      <div class="image">
+        <img src="${getPlayerImageUrl(image)}">
+      </div>
+      <div class="nickname">${nickname}</div>
+      <div class="name">${name}</div>
+      <div class="team">${team}</div>
+      <div class="level">${level}</div>
+      <div class="position">${position}</div>
+    `
   }
 }

@@ -1,0 +1,32 @@
+@use "../abstracts" as *;
+
+.player {
+  padding: 20px 0;
+  border: 1px solid $color-black;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
+  > div {
+    font-size: 1.2rem;
+    flex: 1;
+    text-align: center;
+
+    img {
+      --width: 100px;
+      width: var(--width);
+      height: calc(var(--width) * 3 / 2);
+      object-fit: cover;
+      object-position: center;
+    }
+
+    &.nickname {
+      letter-spacing: .2rem;
+    }
+  }
+
+  &:hover {
+    outline: 4px solid $color-black;
+  }
+}

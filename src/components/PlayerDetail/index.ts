@@ -1,5 +1,5 @@
 import Component from "../../core/Component";
-import supabase from "../../core/supabase";
+import { getPlayerImageUrl } from "../../core/supabase";
 
 export default class PlayerDetail extends Component {
   constructor() {
@@ -61,12 +61,4 @@ export default class PlayerDetail extends Component {
       `
     }
   }
-}
-
-function getPlayerImageUrl(path: string) {
-  const { data } = supabase.storage
-                     .from('HR-profile-image')
-                     .getPublicUrl(path);
-
-  return data.publicUrl;
 }

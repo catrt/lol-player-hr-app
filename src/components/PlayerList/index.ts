@@ -1,9 +1,8 @@
 import Component from "../../core/Component";
 import Categories from "./Categories";
 import PlayerItem from "./PlayerItem";
-import { info } from "./PlayerItem";
-
-type players = info[]
+import Buttons from "./Buttons";
+import { playerProps } from "./PlayerItem";
 
 export default class PlayerList extends Component {
   constructor() {
@@ -12,6 +11,7 @@ export default class PlayerList extends Component {
     })
   }
   update() {
+    const btnsEl = new Buttons().el
     const categoriesEl = new Categories().el
     
     const playersEl = document.createElement("div")
@@ -19,12 +19,15 @@ export default class PlayerList extends Component {
 
     const playersData = localStorage.getItem("players")
     if(playersData) {
-      const players = JSON.parse(playersData)
+      const players: playerProps[] = JSON.parse(playersData)
 
-
+      playersEl.append(...Object.values(players).map(player => {
+        return new PlayerItem(player).el
+      }))
     }
 
     this.el.append(
+      btnsEl,
       categoriesEl,
       playersEl
     )
