@@ -28,7 +28,7 @@ export default class Navigation extends Component {
           },
           {
             name: "Profile",
-            href: "#/profile"
+            href: "#/profile?key=FAKER"
           },
         ]
       }
@@ -50,7 +50,7 @@ export default class Navigation extends Component {
       const liEl = document.createElement("li")
       const anchorEl = document.createElement("a")
       isActive && anchorEl.classList.add("active")
-      anchorEl.setAttribute("href", navHref)
+      anchorEl.setAttribute("href", menu.href)
       anchorEl.textContent = menu.name
       
       liEl.append(anchorEl)

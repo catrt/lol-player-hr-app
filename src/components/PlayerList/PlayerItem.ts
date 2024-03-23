@@ -5,12 +5,19 @@ interface playerProps {
   infos: info[]
 }
 export interface info {
-  [key: string]: string
+  [key: string]: unknown
+  "nickname": string
   "image": string
   "name": string
   "team": string
   "level": string
   "position": string
+  "champion": {
+    [key: string]: unknown
+    "championship": number
+    "msi": number
+    "league": number
+  }
 }
 
 export default class PlayerItem extends Component {

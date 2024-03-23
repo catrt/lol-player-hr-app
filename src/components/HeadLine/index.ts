@@ -24,7 +24,7 @@ export default class Headline extends Component {
           },
           {
             text: "선수 확인하기",
-            href: "#/profile"
+            href: "#/profile?key=FAKER"
           },
         ]
       }
