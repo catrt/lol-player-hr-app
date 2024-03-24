@@ -9,6 +9,24 @@
     line-height: 1.2;
   }
 
+  .search {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+
+    input {
+      font-size: 1.5rem;
+      line-height: 2rem;
+      border: 1px solid $color-gray;
+      border-radius: 4px;
+      padding: 5px 10px;
+
+      &:focus {
+        border-color: $color-black;
+      }
+    }
+  }
+
   .btns {
     display: flex;
     justify-content: center;

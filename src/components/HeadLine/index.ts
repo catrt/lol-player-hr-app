@@ -1,4 +1,5 @@
 import Component from "../../core/Component"
+import Search from "./Search"
 
 interface headlineState {
   [key: string]: unknown
@@ -53,8 +54,11 @@ export default class Headline extends Component {
       btnsEl.append(btnEl)
     })
 
+    const searchEl = new Search().el
+
     this.el.append(
       h1El,
+      searchEl,
       btnsEl
     )
   }
