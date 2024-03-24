@@ -11,7 +11,7 @@ export default class Logo extends Component {
     this.el.setAttribute("href", "#/")
 
     const logoImgEl = document.createElement("img")
-    logoImgEl.setAttribute("src", "/src/images/logo.svg")
+    logoImgEl.setAttribute("src", "/images/logo.svg")
     logoImgEl.setAttribute("alt", "LCK")
 
     this.el.append(logoImgEl)

@@ -22,7 +22,7 @@ LOL 선수 관리 사이트 : [DEMO](https://lol-player-hr-app.vercel.app/#/)
 
 ## 유저 플로우
   
-  ![USER FLOW](/src/images/user_flow.PNG)
+  ![USER FLOW](/public/images/user_flow.PNG)
 
 ## 주요 구현 사항
 
