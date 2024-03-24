@@ -42,10 +42,15 @@ export default class PlayerItem extends Component {
       <div class="image">
         <img src="${getPlayerImageUrl(image)}">
       </div>
+      <div class="category">닉네임 : </div>
       <div class="nickname">${nickname}</div>
+      <div class="category">이름 : </div>
       <div class="name">${name}</div>
+      <div class="category">팀 : </div>
       <div class="team">${team}</div>
+      <div class="category">소속 : </div>
       <div class="level">${level}</div>
+      <div class="category">포지션 : </div>
       <div class="position">${position}</div>
     `
   }
