@@ -95,15 +95,14 @@ export default class InfoForm extends Component {
       const championshipInputEl = form.elements.namedItem("championship") as HTMLInputElement
       const msiInputEl = form.elements.namedItem("msi") as HTMLInputElement
       const leagueInputEl = form.elements.namedItem("league") as HTMLInputElement
-      console.log(imageInputEl.files)
-      console.log(imageInputEl.files?.length)
-      if(imageInputEl.files && imageInputEl.files.length !== 0) {
+      
+      if(imageInputEl.files) {
         try {
-          const fileUuid = uuidv4()
+          const fileUuid = uuidv4().split("-").join("")
           const imageFile = imageInputEl.files[0]
-          if(!infos) {
+          if(!infos && imageInputEl.files.length !== 0) {
             await uploadFile(`${fileUuid}-${imageFile.name}`, imageFile)
-          } else if(imageFile && `${fileUuid}-${imageFile.name}` !== infos.image) {
+          } else if(imageFile && imageFile.name !== infos.image.subString(infos.image.indexOf('-') + 1)) {
             await deleteFile(infos.image)
             await uploadFile(`${fileUuid}-${imageFile.name}`, imageFile)
           }
