@@ -13,7 +13,7 @@ export default class Header extends Component {
 
     const githubEl = document.createElement("a")
     githubEl.classList.add("github")
-    githubEl.setAttribute("href", "https://github.com/catrt")
+    githubEl.setAttribute("href", "https://github.com/catrt/lol-player-hr-app")
     githubEl.setAttribute("target", "_blank")
     githubEl.textContent = "GitHub Repository"
 
