@@ -27,8 +27,13 @@ function routeRender(routes: Routes) {
 
   const currentRoute = routes.find(route => new RegExp(`${route.path}/?$`).test(hash))
   if(mainEl) {
-    mainEl.innerHTML = ""
-    currentRoute && mainEl.append(new currentRoute.component().el)
+    mainEl.innerHTML = /* html */`
+      <div class="loader"></div>
+    `
+    setTimeout(() => {
+      mainEl.innerHTML = ""
+      currentRoute && mainEl.append(new currentRoute.component().el)
+    }, 1000)
   }
   
   window.scrollTo(0, 0)
