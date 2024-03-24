@@ -75,7 +75,11 @@ export default class PlayerDetail extends Component {
       deleteBtnEl?.addEventListener("click", async () => {
         await deleteFile(image)
         let players = JSON.parse(playersJSON)
-        localStorage.setItem("players", JSON.stringify(delete players[nickname]))
+        delete players[nickname]
+        
+        players.length === 0
+          ? localStorage.setItem("players", JSON.stringify(players))
+          : localStorage.removeItem("players")
 
         window.location.href = "#/management"
       })

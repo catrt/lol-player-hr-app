@@ -1,6 +1,7 @@
 import Component from "../../core/Component";
 import { getFileUrl, uploadFile, deleteFile } from "../../core/firebase";
 import { playerProps } from "../PlayerList/PlayerItem";
+import {v4 as uuidv4} from 'uuid';
 
 export default class InfoForm extends Component {
   constructor() {
@@ -31,35 +32,35 @@ export default class InfoForm extends Component {
       <ul class="player-form__infos">
         <li>
           <h3>닉네임</h3>
-          <input type="text" name="nickname" value="${infos ? infos.nickname : ""}">
+          <input type="text" name="nickname" required value="${infos ? infos.nickname : ""}">
         </li>
         <li>
           <h3>선수 이름</h3>
-          <input type="text" name="name" value="${infos ? infos.name : ""}">
+          <input type="text" name="name" required value="${infos ? infos.name : ""}">
         </li>
         <li>
           <h3>소속 팀 이름</h3>
-          <input type="text" name="team" value="${infos ? infos.team : ""}">
+          <input type="text" name="team" required value="${infos ? infos.team : ""}">
         </li>
         <li>
           <h3>팀 내 소속</h3>
-          <input type="text" name="level" value="${infos ? infos.level : ""}">
+          <input type="text" name="level" required value="${infos ? infos.level : ""}">
         </li>
         <li>
           <h3>포지션</h3>
-          <input type="text" name="position" value="${infos ? infos.position : ""}">
+          <input type="text" name="position" required value="${infos ? infos.position : ""}">
         </li>
         <li>
           <h3>LOL Championship 우승 횟수</h3>
-          <input type="number" name="championship" value="${infos ? infos.champion.championship : ""}">
+          <input type="number" name="championship" required value="${infos ? infos.champion.championship : ""}">
         </li>
         <li>
           <h3>MSI 우승 횟수</h3>
-          <input type="number" name="msi" value="${infos ? infos.champion.msi : ""}">
+          <input type="number" name="msi" required value="${infos ? infos.champion.msi : ""}">
         </li>
         <li>
           <h3>리그 우승 횟수</h3>
-          <input type="number" name="league" value="${infos ? infos.champion.league : ""}">
+          <input type="number" name="league" required value="${infos ? infos.champion.league : ""}">
         </li>
       </ul>
     `
@@ -94,20 +95,22 @@ export default class InfoForm extends Component {
       const championshipInputEl = form.elements.namedItem("championship") as HTMLInputElement
       const msiInputEl = form.elements.namedItem("msi") as HTMLInputElement
       const leagueInputEl = form.elements.namedItem("league") as HTMLInputElement
-
-      if(imageInputEl.files) {
+      console.log(imageInputEl.files)
+      console.log(imageInputEl.files?.length)
+      if(imageInputEl.files && imageInputEl.files.length !== 0) {
         try {
+          const fileUuid = uuidv4()
           const imageFile = imageInputEl.files[0]
           if(!infos) {
-            await uploadFile(imageFile.name, imageFile)
-          } else if(imageFile && imageFile.name !== infos.image) {
+            await uploadFile(`${fileUuid}-${imageFile.name}`, imageFile)
+          } else if(imageFile && `${fileUuid}-${imageFile.name}` !== infos.image) {
             await deleteFile(infos.image)
-            await uploadFile(imageFile.name, imageFile)
+            await uploadFile(`${fileUuid}-${imageFile.name}`, imageFile)
           }
           
           const info: playerProps = {
             "nickname": nicknameInputEl.value.toUpperCase(),
-            "image": imageFile ? imageFile.name : infos.image,
+            "image": imageFile ? `${fileUuid}-${imageFile.name}` : infos.image,
             "name": nameInputEl.value,
             "team": teamInputEl.value,
             "level": levelInputEl.value,

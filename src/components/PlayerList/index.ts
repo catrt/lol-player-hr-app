@@ -31,7 +31,7 @@ export default class PlayerList extends Component {
       playersEl.append(...Object.values(players).map(player => {
         return new PlayerItem(player).el
       }))
-      console.log(Object.keys(players).length)
+      
       if(Object.keys(players).length > PLAYLIST_CRIT) {
         playersEl.style.height = `${PLAYERITEM_HEIGHT * PLAYLIST_CRIT}px`
         playerListMoreBtnEl.classList.remove("hide")
