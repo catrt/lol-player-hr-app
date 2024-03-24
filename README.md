@@ -14,7 +14,7 @@ LOL 선수 관리 사이트 : [DEMO]()
 
 - Programming
 
-  ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=SASS&logoColor=white) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+  ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=SASS&logoColor=white) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![Firebase](https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34)
 
 - Deploying
 
@@ -47,5 +47,10 @@ LOL 선수 관리 사이트 : [DEMO]()
 - 처음부터 모든 style 작업을 하려니깐 디자인적인 부분이 어려움
 
 ## 맞게 구현한건지 확실하지 않은 부분
+
 - media query를 그냥 화면 줄여가보면서 어색해지는 부분이 있을 때마다 추가하였는데 이렇게 무식하게 추가해도 되는 건지 의문
 - 페이지 전환시 로딩 애니메이션을 단순히 setTimeout으로 추가했는데 다른 방법이 떠오르질 않음
+
+## 아쉬운 부분
+
+- 로그인 시스템이 있었다면 더 좋은 파일관리가 가능했을 것 같음
