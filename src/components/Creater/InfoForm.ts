@@ -108,12 +108,12 @@ export default class InfoForm extends Component {
           }
           
           const info: playerProps = {
-            "nickname": nicknameInputEl.value.toUpperCase(),
+            "nickname": nicknameInputEl.value.toUpperCase().trim(),
             "image": imageFile ? `${fileUuid}-${imageFile.name}` : infos.image,
-            "name": nameInputEl.value,
-            "team": teamInputEl.value,
-            "level": levelInputEl.value,
-            "position": positionInputEl.value,
+            "name": nameInputEl.value.trim(),
+            "team": teamInputEl.value.trim(),
+            "level": levelInputEl.value.trim(),
+            "position": positionInputEl.value.trim(),
             "champion": {
               "championship": Number(championshipInputEl.value),
               "msi": Number(msiInputEl.value),
