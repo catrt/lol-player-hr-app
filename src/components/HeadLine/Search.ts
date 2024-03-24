@@ -27,8 +27,9 @@ export default class Search extends Component {
               window.location.href = `/#/profile?key=${searchText}`
             }
           })
-          inputEl.value = ""
-          inputEl.setAttribute("placeholder", "존재하지 않는 선수입니다.")
+          inputEl.value = "존재하지 않는 선수입니다."
+        } else {
+          inputEl.value = "존재하지 않는 선수입니다."
         }
       }
     })
