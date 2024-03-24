@@ -11,6 +11,9 @@ export default class PlayerList extends Component {
     })
   }
   update() {
+    const PLAYERITEM_HEIGHT = 205
+    const PLAYLIST_CRIT = 3
+
     const btnsEl = new Buttons().el
     const categoriesEl = new Categories().el
 
@@ -28,16 +31,16 @@ export default class PlayerList extends Component {
       playersEl.append(...Object.values(players).map(player => {
         return new PlayerItem(player).el
       }))
-
-      if(players.length > 4) {
-        playersEl.style.height = `${210 * 3}px`
+      console.log(Object.keys(players).length)
+      if(Object.keys(players).length > PLAYLIST_CRIT) {
+        playersEl.style.height = `${PLAYERITEM_HEIGHT * PLAYLIST_CRIT}px`
         playerListMoreBtnEl.classList.remove("hide")
       }
 
       playerListMoreBtnEl.addEventListener("click", () => {
-        const curIndex = playersEl.offsetHeight / 210
-        if(players.length > curIndex + 3) {
-          playersEl.style.height = `${playersEl.offsetHeight + 210 * 3}px`
+        const curIndex = playersEl.offsetHeight / PLAYERITEM_HEIGHT
+        if(Object.keys(players).length > curIndex + PLAYLIST_CRIT) {
+          playersEl.style.height = `${playersEl.offsetHeight + PLAYERITEM_HEIGHT * PLAYLIST_CRIT}px`
         } else {
           playersEl.style.height = "auto"
           playerListMoreBtnEl.classList.add("hide")
