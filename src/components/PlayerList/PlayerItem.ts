@@ -1,5 +1,5 @@
 import Component from "../../core/Component";
-import { getPlayerImageUrl } from "../../core/supabase";
+import { getFileUrl } from "../../core/firebase";
 
 export interface playerProps {
   [key: string]: unknown
@@ -27,7 +27,7 @@ export default class PlayerItem extends Component {
       props
     })
   }
-  update() {
+  async update() {
     const { nickname,
       image,
       name,
@@ -38,9 +38,11 @@ export default class PlayerItem extends Component {
 
     this.el.setAttribute("href", `#/profile?key=${nickname}`)
 
+    const url = await getFileUrl(image)
+
     this.el.innerHTML = /* html */`
       <div class="image">
-        <img src="${getPlayerImageUrl(image)}">
+        <img src="${url}">
       </div>
       <div class="category">닉네임 : </div>
       <div class="nickname">${nickname}</div>

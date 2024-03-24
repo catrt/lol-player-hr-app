@@ -1,5 +1,5 @@
 import Component from "../../core/Component";
-import { getPlayerImageUrl, uploadPlayerImage } from "../../core/supabase";
+import { getFileUrl, uploadFile, deleteFile } from "../../core/firebase";
 import { playerProps } from "../PlayerList/PlayerItem";
 
 export default class InfoForm extends Component {
@@ -9,15 +9,22 @@ export default class InfoForm extends Component {
       classNames: ["player-form"]
     })
   }
-  update() {
+  async update() {
+    this.el.addEventListener("keydown", event => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+      }
+    })
+
     const { key = "" } = history.state
-    const players = localStorage.getItem("players")
-    const infos = players && key && JSON.parse(players)[key]
+    const playersJSON = localStorage.getItem("players")
+    const infos = playersJSON && key && JSON.parse(playersJSON)[key]
+    const url = infos && await getFileUrl(infos.image)
 
     this.el.innerHTML = /* html */`
       <button type="submit" class="btn">등록하기</button>
       <div class="player-form__image">
-        ${infos ? `<img src="${getPlayerImageUrl(infos.image)}">` : "<img>"}
+        ${infos ? `<img src="${url}">` : "<img>"}
         <input type="file" accept="image/*" name="image">
         <button type="button" class="btn">파일 선택</button>
       </div>
@@ -91,11 +98,16 @@ export default class InfoForm extends Component {
       if(imageInputEl.files) {
         try {
           const imageFile = imageInputEl.files[0]
-          await uploadPlayerImage(imageFile.name, imageFile)
-  
+          if(!infos) {
+            await uploadFile(imageFile.name, imageFile)
+          } else if(imageFile && imageFile.name !== infos.image) {
+            await deleteFile(infos.image)
+            await uploadFile(imageFile.name, imageFile)
+          }
+          
           const info: playerProps = {
-            "nickname": nicknameInputEl.value,
-            "image": imageFile.name,
+            "nickname": nicknameInputEl.value.toUpperCase(),
+            "image": imageFile ? imageFile.name : infos.image,
             "name": nameInputEl.value,
             "team": teamInputEl.value,
             "level": levelInputEl.value,
@@ -106,10 +118,19 @@ export default class InfoForm extends Component {
               "league": Number(leagueInputEl.value),
             }
           }
-    
-          localStorage.setItem("players", JSON.stringify((players ? JSON.parse(players) : {}).defineProperty(nicknameInputEl.value, info)))
-
-          window.history.back()
+          
+          if(playersJSON) {
+            let players = JSON.parse(playersJSON)
+            if(infos && info.nickname !== infos.nickname) delete players[infos.nickname]
+            players[info.nickname] = info
+            localStorage.setItem("players", JSON.stringify(players))
+          } else {
+            let players = {} as {[key: string]: playerProps}
+            players[info.nickname] = info
+            localStorage.setItem("players", JSON.stringify(players))
+          }
+          
+          window.location.href = `#/profile?key=${info.nickname}`
         } catch (error) {
           console.error("Form Error!!")
           console.log(error)

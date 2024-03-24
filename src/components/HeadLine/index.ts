@@ -24,7 +24,7 @@ export default class Headline extends Component {
             href: "#/management"
           },
           {
-            text: "선수 추가하기",
+            text: "선수 등록하기",
             href: "#/edit"
           },
         ]

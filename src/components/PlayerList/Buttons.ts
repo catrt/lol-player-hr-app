@@ -11,9 +11,11 @@ export default class Buttons extends Component {
     createBtnEl.classList.add("btn")
     const linkEl = document.createElement("a")
     linkEl.href = "#/edit"
-    linkEl.textContent = "선수 추가하기"
+    linkEl.textContent = "선수 등록하기"
     createBtnEl.append(linkEl)
 
-    this.el.append(createBtnEl)
+    this.el.append(
+      createBtnEl
+    )
   }
 }

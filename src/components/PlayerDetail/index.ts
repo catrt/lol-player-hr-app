@@ -1,5 +1,5 @@
 import Component from "../../core/Component";
-import { getPlayerImageUrl } from "../../core/supabase";
+import { getFileUrl, deleteFile } from "../../core/firebase";
 
 export default class PlayerDetail extends Component {
   constructor() {
@@ -7,10 +7,13 @@ export default class PlayerDetail extends Component {
       classNames: ["player-detail"]
     })
   }
-  update() {
-    const playersData = localStorage.getItem("players")
-    if(playersData){
-      const playerInfos = JSON.parse(playersData)[history.state.key]
+  async update() {
+    const playersJSON = localStorage.getItem("players")
+    if(playersJSON){
+      const players = JSON.parse(playersJSON)
+      const playerInfos = players[history.state.key] 
+                            ? players[history.state.key]
+                            : players[Object.keys(players)[0]]
       const { nickname,
         image,
         name,
@@ -20,6 +23,8 @@ export default class PlayerDetail extends Component {
         champion
       } = playerInfos
 
+      const url = await getFileUrl(image)
+
       this.el.innerHTML = /* html */`
         <button type="button" class="btn">
           <a href="#/edit?key=${nickname}">수정하기</a>
@@ -28,11 +33,11 @@ export default class PlayerDetail extends Component {
           삭제하기
         </button>
         <img 
-          src="${getPlayerImageUrl(image)}" 
+          src="${url}"
           alt="name" 
           class="player-detail__image">
         <div class="player-detail__infos">
-          <h2>${nickname.toUpperCase()}</h2>
+          <h2>${nickname}</h2>
           <ul>
             <li>
               <h3>선수 이름</h3>
@@ -65,6 +70,23 @@ export default class PlayerDetail extends Component {
           </ul>
         </div>
       `
+
+      const deleteBtnEl = this.el.querySelector(".btn--delete")
+      deleteBtnEl?.addEventListener("click", async () => {
+        await deleteFile(image)
+        let players = JSON.parse(playersJSON)
+        localStorage.setItem("players", JSON.stringify(delete players[nickname]))
+
+        window.location.href = "#/management"
+      })
+    } else {
+      const errorEl = document.createElement("div")
+      errorEl.textContent = "There are no Registered Players."
+      errorEl.classList.add("error")
+
+      this.el.append(
+        errorEl
+      )
     }
   }
 }
