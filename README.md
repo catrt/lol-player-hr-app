@@ -1,7 +1,5 @@
 # **[ LOL 선수 관리 사이트 ]**
 
-직원들을 관리할 수 있는 관리자 서비스를 만들어 보세요.
-
 ## DEMO 사이트
 
 LOL 선수 관리 사이트 : [DEMO](https://lol-player-hr-app.vercel.app/#/)
