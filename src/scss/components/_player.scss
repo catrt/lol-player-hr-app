@@ -19,6 +19,7 @@
       height: calc(var(--width) * 3 / 2);
       object-fit: cover;
       object-position: center;
+      background-color: $color-none;
     }
 
     &.nickname {

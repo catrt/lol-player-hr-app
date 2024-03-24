@@ -23,8 +23,8 @@ export default class Headline extends Component {
             href: "#/management"
           },
           {
-            text: "선수 확인하기",
-            href: "#/profile?key=FAKER"
+            text: "선수 추가하기",
+            href: "#/edit"
           },
         ]
       }
