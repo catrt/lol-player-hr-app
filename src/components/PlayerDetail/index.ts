@@ -78,8 +78,8 @@ export default class PlayerDetail extends Component {
         delete players[nickname]
         
         players.length === 0
-          ? localStorage.setItem("players", JSON.stringify(players))
-          : localStorage.removeItem("players")
+          ? localStorage.removeItem("players")
+          : localStorage.setItem("players", JSON.stringify(players))
 
         window.location.href = "#/management"
       })
